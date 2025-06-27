@@ -33,7 +33,7 @@ router.post('/',
       const { row, created } = await service.findOrCreate(url);
       
       return res.status(created ? 201 : 200).json({
-        shortUrl: `${config.baseUrl}/s/${row.id}`,
+        shortUrl: `${config.baseUrl}/${row.id}`,
         fullUrl:  row.url,
       });
     } catch (error) {
