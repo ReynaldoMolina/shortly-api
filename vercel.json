@@ -15,5 +15,12 @@
       "src": "/api/index.js",
       "use": "@now/node"
     }
+  ],
+
+  "routes": [
+    {
+      "src": "/([A-Za-z0-9_-]+)$",
+      "dest": "/api/index.js?id=$1"
+    }
   ]
 }
