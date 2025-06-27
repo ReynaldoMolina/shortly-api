@@ -14,7 +14,7 @@ const whitelist = [
   'http://localhost:3000',
   'http://localhost:4321',
   'http://192.168.1.7:3000',
-  'https://urlshortener-rm.vercel.app/'
+  'https://urlshortener-rm.vercel.app'
 ];
 
 const options = {
