@@ -8,7 +8,7 @@ function routerApi(app) {
   app.use('/', router);
 
   router.use('/shorten', urlsRouter);
-  router.use('/', redirectRouter);
+  router.use('/s', redirectRouter);
 }
 
 module.exports = routerApi;
