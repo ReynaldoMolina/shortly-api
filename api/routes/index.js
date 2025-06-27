@@ -5,10 +5,10 @@ const redirectRouter = require('./redirect.router');
 
 function routerApi(app) {
   const router = express.Router();
-  app.use('/', router);
+  app.use('/api', router);
 
   router.use('/shorten', urlsRouter);
-  router.use('/s', redirectRouter);
+  router.use('/', redirectRouter);
 }
 
 module.exports = routerApi;
