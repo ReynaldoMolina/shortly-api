@@ -2,7 +2,6 @@
 const express = require('express');
 const cors = require('cors');
 const routerApi = require('./routes');
-const { checkApiKey } = require('./middlewares/auth.handler');
 
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handler');
 
@@ -16,6 +15,7 @@ const whitelist = [
   'http://localhost:4321',
   'http://192.168.1.7:3000',
 ];
+
 const options = {
   origin: (origin, callback) => {
     if (whitelist.includes(origin) || !origin) {
@@ -26,14 +26,11 @@ const options = {
     }
   }
 };
+
 app.use(cors(options));
 
-//create endpoints
-app.get('/api', checkApiKey, (req, res) => {
-  res.send('Welcome to the Reynaldo Molina Dev Url Shortener API');
-});
-
 routerApi(app);
+
 app.use(logErrors);
 app.use(boomErrorHandler);
 app.use(errorHandler);

@@ -2,24 +2,11 @@ const express = require('express');
 const UrlsService = require('../services/urls.service');
 const validatorHandler = require('../middlewares/validator.handler');
 const { checkApiKey } = require('../middlewares/auth.handler');
-const { createUrlSchema, getUrlSchema } = require('../schemas/urls.schema');
+const { createUrlSchema } = require('../schemas/urls.schema');
 const { config } = require('../config/config');
 
 const router = express.Router();
 const service = new UrlsService();
-
-router.get('/:id',
-  validatorHandler(getUrlSchema, 'params'),
-  async (req, res, next) => {
-    try {
-      const id = req.params.id;
-      const { url: fullUrl } = await service.getById(id);
-      return res.redirect(301, fullUrl);
-    } catch (error) {
-      next(error);
-    }
-  }
-);
 
 router.post('/',
   checkApiKey,
@@ -43,15 +30,13 @@ router.post('/',
     }
 
     try {
-      const newUrl = await service.create(url);
-      res.status(201).json({
-        shortUrl: `${config.baseUrl}/${newUrl.id}`,
-        fullUrl: newUrl.url
+      const { row, created } = await service.findOrCreate(url);
+      
+      return res.status(created ? 201 : 200).json({
+        shortUrl: `${config.baseUrl}/${row.id}`,
+        fullUrl:  row.url,
       });
     } catch (error) {
-      if (error.code === '23505') {
-        return res.status(503).json({ error: 'Please retry' });
-      }
       next(error);
     }
   }
