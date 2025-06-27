@@ -1,5 +1,5 @@
 {
-  "name": "store-orden-system",
+  "name": "url-shortener-api",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -12,30 +12,27 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ReynaldoMolina/store-order-system.git"
+    "url": "git+https://github.com/ReynaldoMolina/shortapi.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/ReynaldoMolina/store-order-system/issues"
+    "url": "https://github.com/ReynaldoMolina/shortapi/issues"
   },
-  "homepage": "https://github.com/ReynaldoMolina/store-order-system#readme",
+  "homepage": "https://github.com/ReynaldoMolina/shortapi#readme",
   "description": "",
   "dependencies": {
     "@hapi/boom": "^9.1.4",
-    "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
-    "mysql2": "^3.12.0",
+    "nanoid": "^5.1.5",
     "nodemon": "^3.1.9",
-    "passport": "^0.7.0",
-    "passport-jwt": "^4.0.1",
-    "passport-local": "^1.0.0",
+    "normalize-url": "^8.0.2",
     "pg": "^8.13.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.5"

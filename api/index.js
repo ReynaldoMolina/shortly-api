@@ -15,7 +15,6 @@ const whitelist = [
   'http://localhost:3000',
   'http://localhost:4321',
   'http://192.168.1.7:3000',
-  'https://reynaldomolina.github.io'
 ];
 const options = {
   origin: (origin, callback) => {
@@ -29,16 +28,9 @@ const options = {
 };
 app.use(cors(options));
 
-// use auth strategy
-require('./utils/auth');
-
 //create endpoints
-app.get('/api', (req, res) => {
-  res.send('Welcome to the Jahaira Store API');
-});
-
-app.get('/test', checkApiKey, (req, res) => {
-  res.send("Hi, I'm a new route");
+app.get('/api', checkApiKey, (req, res) => {
+  res.send('Welcome to the Reynaldo Molina Dev Url Shortener API');
 });
 
 routerApi(app);
