@@ -4,7 +4,6 @@ const validatorHandler = require('../middlewares/validator.handler');
 const { checkApiKey } = require('../middlewares/auth.handler');
 const { createUrlSchema, getUrlSchema } = require('../schemas/urls.schema');
 const { config } = require('../config/config');
-const normalizeUrl = require('normalize-url').default;
 
 const router = express.Router();
 const service = new UrlsService();
@@ -28,7 +27,9 @@ router.post('/',
   async (req, res, next) => {
     let { url } = req.body;
 
-    url = normalizeUrl(url, { defaultProtocol: 'https:' });
+    if (!/^[a-zA-Z][\w+.-]*:\/\//.test(url)) {
+      url = `https://${url}`;
+    }
 
     let parsed;
     try {
