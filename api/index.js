@@ -1,8 +1,6 @@
-//crear app con express
 const express = require('express');
 const cors = require('cors');
 const routerApi = require('./routes');
-
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handler');
 
 const app = express();
@@ -25,10 +23,13 @@ const options = {
     else {
       callback(new Error('No permitido'));
     }
-  }
+  },
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'api'],
 };
 
 app.use(cors(options));
+app.options('*', cors(options));
 
 routerApi(app);
 
@@ -36,7 +37,7 @@ app.use(logErrors);
 app.use(boomErrorHandler);
 app.use(errorHandler);
 
-//emmpezar a escuchar en el puerto
+//empezar a escuchar en el puerto
 app.listen(port, () => {
   console.log(`Mi puerto: ${port}`);
 });
